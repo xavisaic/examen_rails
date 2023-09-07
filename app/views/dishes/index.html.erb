@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+
+
+
+
+<h1>Dishes</h1>
+
+<div id="dishes">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Chef</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dishes.each do |dish| %>
+        <tr>
+          <td><%= dish.name %></td>
+          <td><%= dish.description %></td>
+          <td><%= dish.price %></td>
+          <td><%= dish.chef.name %></td>
+          <td>
+            <%= link_to "Show", dish, class: "btn btn-info btn-sm" %>
+            <%= link_to "Edit", edit_dish_path(dish), class: "btn btn-warning btn-sm" %>
+            <%= link_to "Delete", dish, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New dish", new_dish_path, class: "btn btn-primary" %>

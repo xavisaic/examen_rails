@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+
+
+
+<h1>Chefs</h1>
+
+<div id="chefs">
+  <table class="table table-striped">
+    <!-- ... Tabla de chefs existente ... -->
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Culinary Specialty</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @chefs.each do |chef| %>
+        
+        <tr>
+          <td><%= chef.name %></td>
+          <td><%= chef.email %></td>
+          <td><%= chef.phone %></td>
+          <td><%= chef.culinary_specialty %></td>
+          <td>
+            <%= link_to "Show", chef, class: "btn btn-info btn-sm" %>
+            <%= link_to "Edit", edit_chef_path(chef), class: "btn btn-warning btn-sm" %>
+            <%= link_to "Delete", chef, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+            
+            <!-- Botón para agregar un plato -->
+            <%= link_to "Add Dish", new_dish_path(chef_id: chef.id), class: "btn btn-success btn-sm" %>
+            
+            <!-- Botón para ver platos del chef -->
+            <%= link_to "View Dishes", chef_dishes_path(chef), class: "btn btn-primary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  
+
+</div>
+
+<%= link_to "New chef", new_chef_path, class: "btn btn-primary" %>

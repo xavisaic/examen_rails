@@ -13,6 +13,57 @@
   </head>
 
   <body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid">
+  <a class="navbar-brand" href="#">ETNICEATS</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link" href="<%= chefs_path %>">Chefs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= dishes_path %>">Platos</a>
+  </li>
+  <li class="nav-item">
+    <% if user_signed_in? %>
+      <span class="nav-link">Hola, <%= current_user.email %></span>
+
+    <% end %>
+  </li>
+</ul>
+    
+
+    <form class="d-flex" action="<%= search_path %>" method="get">
+    ` <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    
+    <% if user_signed_in? %>
+    <%= link_to "cerrar sesión", destroy_user_session_path, class: "nav-link" %>
+    <% else %>
+          
+          <%= link_to "Login or Register", new_user_session_path, class: "nav-link" %>
+         
+    <% end %>
+
+
+    <!-- Botones personalizados para Chefs y Platos -->
+    
+  </div>
+</div>
+</nav>
+
+
+
+
+
+
+
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
     <%= yield %>
